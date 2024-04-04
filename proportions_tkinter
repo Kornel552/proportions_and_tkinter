@@ -1,0 +1,76 @@
+from tkinter import Tk, Button, Label, Entry
+def click_action():
+    a = (int(ramka_minuty.get()) * 60) + int(ramka_sekundy.get())
+    b = (float(ramka_kilo.get()) * 3600)
+    c = b / a
+    ramka_wynik.insert(2,(round(c,2)))
+
+def button():
+    #wydajność = float(ramka_porownaj.get())
+    q = (float(ramka_wynik.get()) * 100)
+    o = (float(ramka_porownaj.get()) * 100)
+    d = q / o
+    z = d * 100
+    #z = float(((ramka_wynik.get()) / float(ramka_porownaj.get())) * 100)
+    ramka_wydajnosc.insert(0,(round(z,2),"%"))
+        #print(round(q, 2), "%")
+
+def reset_fields():
+    ramka_minuty.delete(0, 'end')
+    ramka_sekundy.delete(0, 'end')
+    ramka_kilo.delete(0, 'end')
+    ramka_wynik.delete(0, 'end')
+    ramka_porownaj.delete(0, 'end')
+    ramka_wydajnosc.delete(0, 'end')
+
+okno = Tk()
+okno.title("Proprocje - nadziewanie")
+okno.geometry('480x290')
+
+przywitanie1 = Label(okno, text="Podaj minuty: ",font=("", 11))
+przywitanie1.grid(column=0, row=0)
+przywitanie2 = Label(okno, text="Podaj sekundy: ",font=("", 11))
+przywitanie2.grid(column=0, row=2)
+przywitanie3 = Label(okno,text="Podaj wydajność(kg): ",font=("", 11))
+przywitanie3.grid(column=0, row=3)
+przywitanie4 = Label(okno,text="Wynik: ",font=("", 12))
+przywitanie4.grid(column=0, row=6)
+przywitanie5 = Label(okno,text="opcjonalnie \nporównaj wydajność")
+przywitanie5.grid(column=0, row=8)
+przywitanie6 = Label(okno,text=" ",font=("", 12))
+przywitanie6.grid(column=0, row=4)
+przywitanie7 = Label(okno,text="  ",font=("", 12))
+przywitanie7.grid(column=0, row=7)
+przywitanie8 = Label(okno,text="  ",font=("", 12))
+przywitanie8.grid(column=0, row=9)
+przywitanie9 = Label(okno,text="Wydajność(%): ",font=("", 12))
+przywitanie9.grid(column=0, row=10)
+
+ramka_minuty = Entry(okno,width=17)
+ramka_minuty.grid(column=1, row=0)
+
+ramka_sekundy = Entry(okno,width=17)
+ramka_sekundy.grid(column=1, row=2)
+
+ramka_kilo = Entry(okno,width=17)
+ramka_kilo.grid(column=1, row=3)
+
+ramka_wynik = Entry(okno, bg= "cyan")
+ramka_wynik.grid(column=1, row=6)
+
+ramka_porownaj = Entry(okno,width=17)
+ramka_porownaj.grid(column=1,row=8)
+
+ramka_wydajnosc = Entry(okno, bg= "cyan")
+ramka_wydajnosc.grid(column=1, row=10)
+
+click_button1 = Button(okno, foreground="purple", text="Policz!", command=click_action)
+click_button1.grid(column=2, row=3)
+
+click_button2 = Button(okno, foreground="purple", text="Porównaj!", command=button)
+click_button2.grid(column=2, row=8)
+
+click_button3 = Button(okno, foreground="red", text="Resetuj", command=reset_fields)
+click_button3.grid(column=50, row=0)
+
+okno.mainloop()
